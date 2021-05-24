@@ -1,0 +1,35 @@
+h1{
+    height: 15vh;
+    display: flexbox;
+    font-size: 5vh;
+    text-align: center;
+    color:white;
+    background-color: rgb(39, 39, 153);
+
+}
+
+.Search{
+    background-color: teal;}
+
+.display{
+    background-color: blueviolet;
+}
+
+.btn{
+    height: 10vh;
+    background-color: blue;
+}
+
+.card{
+    height: 30vh;
+    background-color: brown;
+}
+
+.board{
+    margin-bottom: 2vh;
+    height: 40vh;
+    background-color: burlywood;
+   
+ 
+}
+
