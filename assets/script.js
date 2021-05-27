@@ -1,12 +1,16 @@
 var Input = document.querySelector("#Input");
 var $Search = document.querySelector("#Search");
+var forcast = document.querySelectorAll(".card-title");
+sustain();
 
-$Search.addEventListener("click", Search)
-function Search(event) {
-  event.preventDefault()
-  var cityName = Input.value;
+$Search.addEventListener("click", input)
+function Search(cityName) {
+ 
+  
   var urlApi = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + " &appid=05e10c92e64f28acd7117c4f4a378cef"
-
+for(var i = 0; i <forcast.length; i++ ){
+  forcast[i].innerHTML= "";
+}
   fetch(urlApi)
     .then(function (response) {
       response.json().then(function (data) {
@@ -19,7 +23,7 @@ function Search(event) {
             response.json().then(function (data) {
               localStorage.setItem(cityName, JSON.stringify(data))
               Display(cityName);
-              Display1(cityName);
+              displayboard(cityName);
 
 
             })
@@ -32,29 +36,44 @@ function Search(event) {
 function Display(cityName) {
   var data = JSON.parse(localStorage.getItem(cityName));
   console.log(JSON.parse(localStorage.getItem(cityName)));
-  var forcast = document.querySelectorAll(".card-title");
-  for (var i = 0; i < forcast.length; i++) {
+    for (var i = 0; i < forcast.length; i++) {
     var $date = document.createElement('h3');
     $date.textContent = moment().add((i + 1), 'days').format("MMMM Do YYYY");
     var temp = document.createElement("p");
     temp.textContent = "Temp: " + data.daily[i].temp.day + "° F";
     var hum = document.createElement("p");
-    hum.textContent= "Humidity: " + data.daily[i].humidity;
+    hum.textContent= "Humidity: " + data.daily[i].humidity + "%";
     var wind= document.createElement("p");
-    wind.textContent= "Wind: "+ data.daily[i].wind_speed;
-
-    forcast[i].append($date, temp,hum,wind,);
+    wind.textContent= "Wind: "+ data.daily[i].wind_speed + " MPH";
+    var icon= document.createElement("img");
+    icon.setAttribute("src", "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png");
+    forcast[i].append($date, temp,hum,wind,icon,);
     
   };
   
 };
+function input(event) {
+  event.preventDefault();
+  var cityName = Input.value;
+  Search(cityName);
+  
+}
+function sustain(cityName) {Search("Denver")
+  
+};
 
-// function Display1(cityName) {
-//   var data = JSON.parse(localStorage.getItem(cityName));
-//   console.log(JSON.parse(localStorage.getItem(cityName)));
-//   var currentDay = document.querySelector(".board");
-//   var wind= document.createElement("p");
-//   wind.textContent= "Wind: "+ data.daily.wind_speed;
-//  currentDay.append(wind1);
-// };
+function displayboard(cityName) {
+  var data = JSON.parse(localStorage.getItem(cityName));
+  console.log(JSON.parse(localStorage.getItem(cityName)));
+  var $cityDate = document.querySelector("#cityDate");
+ $cityDate.textContent = cityName +" " + moment().format('MMMM Do YYYY');
+ var $temp = document.querySelector("#TEMP");
+ $temp.textContent = " "+ data.current.temp +"° F";
+ var $wind = document.querySelector("#WIND");
+ $wind.textContent = " " + data.current.wind_speed + " MPH";
+ var $HUMIDITY = document.querySelector("#HUMIDITY");
+ $HUMIDITY.textContent= " "+ data.current.humidity + "%";
+ var $UV = document.querySelector("#UV");
+ $UV.textContent = " " + data.current.uvi;
+};
 
