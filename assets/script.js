@@ -1,7 +1,7 @@
 var Input = document.querySelector("#Input");
 var $Search = document.querySelector("#Search");
 var forcast = document.querySelectorAll(".card-title");
-sustain();
+sustain()""
 
 $Search.addEventListener("click", input)
 function Search(cityName) {
