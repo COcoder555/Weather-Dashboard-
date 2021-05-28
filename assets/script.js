@@ -3,7 +3,7 @@ var $Search = document.querySelector("#Search");
 var forcast = document.querySelectorAll(".card-title");
 var data = JSON.parse(localStorage.getItem("cityName"))||[];
 var $history = document.querySelector("#history");
-// sustain();
+sustain();
 
 $Search.addEventListener("click", input)
 function Search(cityName, event) {
@@ -23,8 +23,11 @@ for(var i = 0; i <forcast.length; i++ ){
         fetch(urlApi2)
           .then(function (response) {
             response.json().then(function (response) {
-              data.push(cityName);
-              localStorage.setItem("cityName", JSON.stringify(data))
+              if(!data.includes(cityName)){
+                data.push(cityName);
+              };
+            
+              localStorage.setItem("cityName", JSON.stringify(data));
               Display(response);
               displayboard(cityName,response);
               if(!event){
@@ -62,9 +65,14 @@ function input(event) {
   Search(cityName);
   
 }
-// function sustain(cityName) {Search("Denver")
+function sustain() {if(localStorage.getItem.cityName){
+  var store = JSON.parse(localStorage.getItem("cityName"))
+  Search(store[0])
+}else{
+  Search("Denver")
+};
   
-// };
+};
 
 function history() {
   console.log(data);
@@ -76,9 +84,7 @@ function history() {
   historyButton.textContent = data[i];
   $history.append(historyButton);
   };
-  // historyButton(){
-  //   // Display();
-  // }
+
 };
 history();
 
@@ -93,7 +99,7 @@ $history.addEventListener("click",historyClick);
 
 function displayboard(cityName,response) {
 
-  var $cityDate = document.querySelector("#cityDate");
+ var $cityDate = document.querySelector("#cityDate");
  $cityDate.textContent = cityName +" " + moment().format('MMMM Do YYYY');
  var $temp = document.querySelector("#TEMP");
  $temp.textContent = " "+ response.current.temp +"° F";
@@ -103,5 +109,13 @@ function displayboard(cityName,response) {
  $HUMIDITY.textContent= " "+ response.current.humidity + "%";
  var $UV = document.querySelector("#UV");
  $UV.textContent = " " + response.current.uvi;
+ if(response.current.uvi >0 && response.current.uvi<=2 ){
+   $UV.setAttribute("class", "favorable");
+ }else if(response.current.uvi>2 && response.current.uvi <=5){
+   $UV.setAttribute("class","moderate");
+ }
+ else{
+   $UV.setAttribute("class","Severe")
+ };
 };
 

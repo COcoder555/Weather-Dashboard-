@@ -33,3 +33,17 @@ h1{
  
 }
 
+.favorable{
+background-color:green;
+color:white;
+}
+
+.moderate{
+background-color: yellow;
+color:black;
+}
+
+.Severe{
+background-color: red;
+color:white;
+}
