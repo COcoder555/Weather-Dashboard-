@@ -6,7 +6,7 @@
 ### HTML:
 * I created a basic index.html file in which I created :
     * boilerplat html
-    * a link to bootstrap using :"https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
+    * a link to bootstrap. 
     * a line to moment.js for the dates that would be needed be rendured in the script.js file. 
     * a "container" to which in I created in bootstrap:
     * *  a Search bar 
