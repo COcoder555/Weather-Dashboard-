@@ -116,7 +116,7 @@ function displayboard(cityName,response) {
  $HUMIDITY.textContent= " "+ response.current.humidity + "%";
  var $UV = document.querySelector("#UV");
  $UV.textContent = " " + response.current.uvi;
- if(response.current.uvi >0 && response.current.uvi<=2 ){
+ if(response.current.uvi > 0 && response.current.uvi<=2 ){
    $UV.setAttribute("class", "favorable");
  }else if(response.current.uvi>2 && response.current.uvi <=5){
    $UV.setAttribute("class","moderate");
