@@ -2,6 +2,7 @@
 * Weather Dashboard gives the user  current, up to date, weather information as well as a five-day forecast.
 
 ### Built With:
+* HTML
 * JavaScript
 * 
 
