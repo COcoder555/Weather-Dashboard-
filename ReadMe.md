@@ -1,9 +1,12 @@
 # Weather Dashboard
+* Weather Dashboard gives the user  current, up to date, weather information as well as a five-day forecast.
 
 ### Built With:
 * JavaScript
+* 
 
-* Weather Dashboard gives the user  current, up to date, weather information as well as a five-day forecast.
+
+
 
 ## Construction of the Landing Page: HTML, style.css, script.js
         
