@@ -5,10 +5,8 @@
 * HTML
 * JavaScript
 * CSS
-* 
-
-
-
+* Moment.js
+* Bootstrap
 
 ## Construction of the Landing Page: HTML, style.css, script.js
         
